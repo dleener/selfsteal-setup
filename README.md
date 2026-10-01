@@ -39,7 +39,7 @@
 Проверить, что запись разошлась:
 
 ```bash
-dig +short nl2.proxhub.tech
+dig +short nl2.proxhub.ru
 ```
 
 Должен вернуться IP сервера.
@@ -49,19 +49,17 @@ dig +short nl2.proxhub.tech
 Одной командой, без скачивания:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/ЛОГИН/selfsteal-setup/main/setup-selfsteal.sh) \
-  -d nl2.proxhub.tech -e you@example.com
+bash <(curl -fsSL https://raw.githubusercontent.com/dleener/selfsteal-setup/main/setup-selfsteal.sh) \
+  -d nl2.proxhub.ru -e you@example.com
 ```
 
 Или через клонирование:
 
 ```bash
-git clone https://github.com/ЛОГИН/selfsteal-setup.git
+git clone https://github.com/dleener/selfsteal-setup.git
 cd selfsteal-setup
-bash setup-selfsteal.sh -d nl2.proxhub.tech -e you@example.com
+bash setup-selfsteal.sh -d nl2.proxhub.ru -e you@example.com
 ```
-
-`ЛОГИН` замените на свой логин GitHub.
 
 ### Параметры
 
@@ -82,7 +80,7 @@ bash setup-selfsteal.sh -d nl2.proxhub.tech -e you@example.com
 | Поле | Значение |
 |---|---|
 | Target / Dest | `127.0.0.1:8001` |
-| SNI / Server Names | ваш домен, например `nl2.proxhub.tech` |
+| SNI / Server Names | ваш домен, например `nl2.proxhub.ru` |
 
 4. Ключи, shortIds и клиентов **не трогайте** — иначе у пользователей отвалятся подписки
 5. Сохраните
@@ -93,14 +91,14 @@ bash setup-selfsteal.sh -d nl2.proxhub.tech -e you@example.com
 С любой машины (порт — тот, на котором работает Reality):
 
 ```bash
-echo | openssl s_client -connect 83.142.30.102:8443 -servername nl2.proxhub.tech 2>/dev/null \
+echo | openssl s_client -connect 83.xx.30.xx:8443 -servername nl2.proxhub.ru 2>/dev/null \
   | openssl x509 -noout -subject -issuer
 ```
 
 Правильный результат:
 
 ```
-subject=CN = nl2.proxhub.tech
+subject=CN = nl2.proxhub.ru
 issuer=C = US, O = Let's Encrypt, CN = ...
 ```
 
@@ -117,8 +115,8 @@ issuer=C = US, O = Let's Encrypt, CN = ...
 Каждому домену — свой локальный порт:
 
 ```bash
-bash setup-selfsteal.sh -d a.proxhub.tech -e you@example.com -p 8001
-bash setup-selfsteal.sh -d b.proxhub.tech -e you@example.com -p 8002
+bash setup-selfsteal.sh -d a.proxhub.ru -e you@example.com -p 8001
+bash setup-selfsteal.sh -d b.proxhub.ru -e you@example.com -p 8002
 ```
 
 В 3x-ui у каждого inbound свой Target.
@@ -139,14 +137,14 @@ bash setup-selfsteal.sh -d b.proxhub.tech -e you@example.com -p 8002
 2. Удалите конфиг и перезапустите nginx:
 
 ```bash
-rm /etc/nginx/conf.d/selfsteal-nl2.proxhub.tech.conf
+rm /etc/nginx/conf.d/selfsteal-nl2.proxhub.ru.conf
 nginx -t && systemctl reload nginx
 ```
 
 3. При необходимости удалите сертификат:
 
 ```bash
-certbot delete --cert-name nl2.proxhub.tech
+certbot delete --cert-name nl2.proxhub.ru
 ```
 
 ## Если что-то не так
