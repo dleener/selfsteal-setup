@@ -43,7 +43,7 @@ usage() {
   $0 -d <домен> -e <email> [параметры]
 
 Обязательные:
-  -d, --domain   домен, например nl2.proxhub.tech
+  -d, --domain   домен, например nl2.proxhub.ru
   -e, --email    почта для уведомлений Let's Encrypt
 
 Необязательные:
